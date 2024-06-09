@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppCloner's cloneSettings.json</title>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #0f0f0f;
+        color: #00ff00;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+    max-width: 800px;
+    margin: 10px 0px 10px 0px;
+    padding: 4px 20px 4px 20px;
+    background-color: #000;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+    h1, h2 {
+        text-align: center;
+        margin-bottom: 0px;
+    }
+
+    h1 {
+        font-size: 22px;
+        color: #00ff00;
+        text-shadow: 2px 2px 4px rgba(0, 255, 0, 0.5);
+    }
+
+    h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    animation: glitch 3s infinite;
+    font-size: 20px;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(-5px, 5px);
+    }
+    50% {
+        transform: translate(5px, -5px);
+    }
+    75% {
+        transform: translate(-5px, 5px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        color: #00ff00;
+    }
+
+    textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #0f0;
+        border-radius: 5px;
+        resize: none;
+        height: 150px;
+        background-color: #000;
+        color: #00ff00;
+        outline: none;
+    }
+    
+    .custom-key-input {
+    width: calc(50% - 20px);
+    padding: 10px;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    background-color: #000;
+    color: #00ff00;
+    outline: none;
+}
+
+    .button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    text-transform: uppercase;
+    background-color: #00ff00;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    outline: none;
+}
+
+.button-group button:nth-child(2) {
+    margin-left: 10px;
+}
+
+.button-group button:hover {
+    background-color: #00cc00;
+}
+
+    .output-container {
+        position: relative;
+        margin-top: 20px;
+    }
+
+   .copy-btn {
+    display: block;
+    margin: 10px auto;
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #00ff00;
+    color: #000;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+.copy-btn:hover {
+    background-color: #00cc00;
+}
+
+.about-app {
+    text-align: center;
+    margin-top: 10px;
+}
+
+    .logo {
+        width: 84px;
+        height: 84px;
+        margin-bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid #00ff00;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .telegram-btn {
+        display: block;
+        padding: 10px;
+        background-color: #00ff00;
+        color: #000;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+
+    .telegram-btn:hover {
+        background-color: #00cc00;
+    }
+</style>
+    <script src="script/aes.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>AppCloner's cloneSettings.json</h1>
+
+      <div class="section">
+        <h2>Decrypt & Encrypt</h2>
+
+        <div class="input-group">
+          <label for="text">Input:</label>
+          <textarea id="text" rows="5" placeholder="Enter text to Encrypt or Decrypt"></textarea>
+        </div>
+
+        <div class="input-group">
+          <label for="key">Enter Custom Key:[Leave empty to use default key]</label>
+          <input type="text" class="custom-key-input" id="key" placeholder="Enter custom key...">
+        </div>
+
+        <div class="button-group">
+          <button class="decrypt-btn">Decrypt</button>
+          <button class="encrypt-btn">Encrypt</button>
+        </div>
+
+        <div class="output-container">
+          <label for="output">Output:</label>
+          <textarea id="output" rows="5" readonly></textarea>
+          <button class="copy-btn" onclick="copyText('output')">Copy</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="about-app">
+          <h2>About App</h2>
+          <img src="data:image/png;base64,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" alt="XTRM Image" class="logo">
+          <p>This app was created by Xtreme Modding Toolz. For more tools, join us on Telegram:</p>
+          <a href="https://t.me/smalicode" class="telegram-btn">Telegram</a>
+        </div>
+      </div>
+    </div>
+<script>
+var decryptionKey = "UYGy723!Po-efjve";
+
+function decrypt() {
+    var encryptedText = document.getElementById("text").value;
+    var keyInput = document.getElementById("key").value;
+    var key = keyInput ? CryptoJS.enc.Utf8.parse(keyInput) : CryptoJS.enc.Utf8.parse(decryptionKey);
+
+    var encryptedData = CryptoJS.enc.Base64.parse(encryptedText);
+    var decryptedData = CryptoJS.AES.decrypt({ ciphertext: encryptedData }, key, { mode: CryptoJS.mode.ECB });
+    var decryptedText = CryptoJS.enc.Utf8.stringify(decryptedData);
+
+    document.getElementById("output").value = decryptedText;
+}
+
+function encrypt() {
+    var decryptedText = document.getElementById("text").value;
+    var keyInput = document.getElementById("key").value;
+    var key = keyInput ? CryptoJS.enc.Utf8.parse(keyInput) : CryptoJS.enc.Utf8.parse(decryptionKey);
+
+    var encryptedData = CryptoJS.AES.encrypt(decryptedText, key, { mode: CryptoJS.mode.ECB });
+    var encryptedText = encryptedData.toString();
+
+    document.getElementById("output").value = encryptedText;
+}
+
+function copyText(elementId) {
+    var textarea = document.getElementById(elementId);
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+}
+
+document.querySelector(".decrypt-btn").addEventListener("click", decrypt);
+document.querySelector(".encrypt-btn").addEventListener("click", encrypt);
+</script>
+  </body>
+</html>
